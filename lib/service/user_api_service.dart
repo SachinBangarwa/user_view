@@ -3,14 +3,16 @@ import 'package:http/http.dart' as http;
 import 'package:user_view/core/app_strings.dart';
 import 'package:user_view/model/user_detail_model.dart';
 
+import '../core/api_endpoint.dart';
+
 class UserApiService {
   Future<List<UserDetailModel>> fetchUsers() async {
-    String url = AppStrings.userUrl;
+    String url = ApiEndpoint.urlEndPoint;
     http.Response response = await http.get(
       Uri.parse(url),
       headers: {
-        AppStrings.apiKey: AppStrings.apiKeyValue,
-        AppStrings.contentType: AppStrings.contentTypeValue,
+        'x-api-key': 'reqres-free-v1',
+        'Content-Type': 'application/json',
       },
     );
 

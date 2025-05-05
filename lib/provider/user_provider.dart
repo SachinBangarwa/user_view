@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:user_view/core/shared_preference_helper.dart';
 import 'package:user_view/model/user_detail_model.dart';
+import '../core/app_util.dart';
 import '../service/user_api_service.dart';
 import 'package:user_view/core/app_strings.dart';
 
@@ -27,7 +28,7 @@ class UserProvider extends ChangeNotifier {
       await SharedPreferenceHelper.saveUser(saveUserList);
       notifyListeners();
     } catch (e) {
-      print(AppStrings.saveUserError);
+      AppUtil.showToast(AppStrings.saveUserError);
     }
   }
 
@@ -42,7 +43,7 @@ class UserProvider extends ChangeNotifier {
       }
       notifyListeners();
     } catch (e) {
-      print(AppStrings.getUserError);
+      AppUtil.showToast(AppStrings.getUserError);
     }
   }
 
@@ -52,7 +53,7 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
       userList = await userApiService.fetchUsers();
     } catch (e) {
-      print(AppStrings.fetchUserError);
+      AppUtil.showToast(AppStrings.fetchUserError);
     }
     isLoading = false;
     notifyListeners();
